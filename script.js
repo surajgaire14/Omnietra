@@ -110,6 +110,7 @@ function onMapClick(e) {
         alert("Earth is already placed! Reload the page to start over.");
     }
 }
+// Add the rotation of the planets 
 
 // Add click event to set Earth position
 map.on('click', onMapClick);
