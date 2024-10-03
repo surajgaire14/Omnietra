@@ -6,16 +6,20 @@
     <title>Solar System Scale Model</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <div id="instructions">
-        <h2>Solar System Scale Model</h2>
-        <p>Click on the map or input the location to place the Earth. The solar system will be scaled around this point.</p>
-    </div>
-    <div id="map-container">
+    <h1 class="project-title">GalaxEye</h1>
+    <div class="map-container">
         <div id="map"></div>
     </div>
+
+    <div class="controls">
+        <button class="tools-button" id="controlBtn">Toggle Revolution</button>
+        <div class="measure-btn" id="measureBtn">Measure Distance</div>
+        <div class="distance-output" id="distanceOutput"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
