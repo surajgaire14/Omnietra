@@ -43,7 +43,7 @@ planets.forEach(planet => {
     });
 
     // Set a random initial angle to avoid alignment
-    planet.angle = Math.random() * 360; 
+    planet.angle = Math.random() * 360;
     const angleRad = planet.angle * (Math.PI / 180);
     const planetCoords = calculatePlanetCoords(planet.distance, angleRad);
 
