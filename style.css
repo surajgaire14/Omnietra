@@ -24,6 +24,7 @@ body {
 #map {
   height: 100%;
   width: 100%;
+  background-color: #161318;
 }
 
 /* Hamburger menu styling */
@@ -55,16 +56,19 @@ body {
   border-radius: 10px 0 0 10px;
   position: absolute;
   top: 0;
-  right: -350px; /* Initially off the screen */
+  right: -350px;
+  /* Initially off the screen */
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: right 0.3s ease; /* Slide animation */
+  transition: right 0.3s ease;
+  /* Slide animation */
   z-index: 9999;
 }
 
 .controls-column.active {
-  right: 0; /* Slide in when active */
+  right: 0;
+  /* Slide in when active */
 }
 
 .controls {
@@ -125,40 +129,48 @@ body {
 
 /* Primary Button (Modern Solid Color) */
 .btn.primary {
-  background-color: #4b0082; /* Deep indigo color */
+  background-color: #4b0082;
+  /* Deep indigo color */
   color: white;
   border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
 }
 
 .btn.primary:hover {
-  background-color: #5d13a6; /* Slightly lighter on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deepen shadow on hover */
+  background-color: #5d13a6;
+  /* Slightly lighter on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  /* Deepen shadow on hover */
 }
 
 /* Secondary Button (Lighter Color Variant) */
 .btn.secondary {
-  background-color: #343a40; /* Dark gray */
+  background-color: #343a40;
+  /* Dark gray */
   color: white;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn.secondary:hover {
-  background-color: #495057; /* Medium gray on hover */
+  background-color: #495057;
+  /* Medium gray on hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Outline Button (Modern Outline with Transparent Background) */
 .btn.outline {
   background-color: transparent;
-  color: #4b0082; /* Deep indigo text */
+  color: #4b0082;
+  /* Deep indigo text */
   border: 2px solid #4b0082;
   box-shadow: none;
 }
 
 .btn.outline:hover {
-  background-color: rgba(75, 0, 130, 0.1); /* Light indigo tint on hover */
+  background-color: rgba(75, 0, 130, 0.1);
+  /* Light indigo tint on hover */
   color: #4b0082;
 }
 

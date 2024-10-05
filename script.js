@@ -1,10 +1,17 @@
 // Initialize map with default center
-const map = L.map('map').setView([27.7008, 85.3000], 18); // Adjust coordinates for your starting location
+const map = L.map('map', {
+    center: [27.7008, 85.3000], // Adjust coordinates for your starting location
+    zoom: 1,
+    minZoom: 2.3, // Set minimum zoom level to avoid excessive zoom-out
+    maxZoom: 19, // Set maximum zoom level for close-up view
+    maxBounds: [[-90, -180], [90, 180]] // Ensure zoom-out doesn't go beyond map boundaries
+})
 
 // Add a tile layer (OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '© OpenStreetMap'
+    attribution: '© OpenStreetMap',
+    noWrap: true
 }).addTo(map);
 
 // Variable to hold Sun marker
@@ -69,7 +76,7 @@ const loadPlanets = () => {
 
         // Add a click event to show planet info
         planetMarkerInstance.on('click', () => {
-            const info = 
+            const info =
                 `<strong>${planet.name}</strong><br>
                 Actual Size (Diameter): ${planet.actualSize} km<br>
                 Scaled Size: ${planet.scaledSize}<br>
@@ -105,7 +112,7 @@ const loadPlanets = () => {
                 planet.angle += 0.5; // Slowed down angle increment
                 const newAngleRad = planet.angle * (Math.PI / 180);
                 const newPlanetCoords = calculatePlanetCoords(planet.distance, newAngleRad);
-    
+
                 // Add motion trail effect
                 const trail = L.circleMarker(newPlanetCoords, {
                     radius: 5,
@@ -116,20 +123,20 @@ const loadPlanets = () => {
                     strokeOpacity: 0.5,
                     opacity: 0.5
                 }).addTo(map);
-    
+
                 // Fade out the trail
                 setTimeout(() => {
                     map.removeLayer(trail);
                 }, 1000); // Adjust time to remove the trail
-    
+
                 // Update planet marker position
                 planetMarkerInstance.setLatLng(newPlanetCoords);
             }
-    
+
             // Continue animation
             requestAnimationFrame(animatePlanet);
         };
-    
+
 
         // Start the animation for each planet
         animatePlanet();
@@ -165,7 +172,7 @@ function calculatePlanetCoords(distance, angleRad) {
     if (!sunMarker) {
         return [27.7008, 85.3000]; // Fallback if no Sun marker is set
     }
-    
+
     const sunCoords = sunMarker.getLatLng();
     return [
         sunCoords.lat + (distance / 100) * Math.cos(angleRad), // Adjusted for visibility
@@ -227,12 +234,12 @@ const focusOnEarth = () => {
 // Add event listener for focusing back on Earth
 document.getElementById('focusEarthBtn').addEventListener('click', focusOnEarth);
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const controlsColumn = document.getElementById('controlsColumn');
-  
+
     // Toggle the control panel sliding from the right when the hamburger is clicked
-    hamburgerBtn.addEventListener('click', function() {
-      controlsColumn.classList.toggle('active');
+    hamburgerBtn.addEventListener('click', function () {
+        controlsColumn.classList.toggle('active');
     });
 });
