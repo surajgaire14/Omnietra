@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Solar System Scale Model</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-</head>
-<body>
-    <h1 class="project-title">GalaxEye</h1>
-    <div class="map-container">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Map Section -->
+      <div class="map-column">
         <div id="map"></div>
-    </div>
+        <div id="dark-overlay"></div>
+      </div>
 
-    <div class="controls">
-        <button class="tools-button" id="controlBtn">Toggle Revolution</button>
-        <div class="measure-btn" id="measureBtn">Measure Distance</div>
-        <div class="distance-output" id="distanceOutput"></div>
+      <!-- Control panel that will slide in from the right -->
+      <div class="controls-column" id="controlsColumn">
+        <div class="controls">
+          <button class="tools-button btn primary" id="controlBtn">
+            Toggle Revolution
+          </button>
+          <button id="focusEarthBtn" class="btn secondary">
+            Focus on Earth
+          </button>
+          <button class="measue-btn btn outline" id="measureBtn">
+            Measure Distance
+          </button>
+          <div
+            class="distance-output"
+            id="distanceOutput"
+            style="color: black"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Hamburger menu outside controls column -->
+      <button class="hamburger" id="hamburgerBtn">&#9776;</button>
+
+      <!-- Hidden settings panel -->
+      <div class="settings-panel" id="settingsPanel">
+        <h3>Settings</h3>
+        <div class="setting-option">
+          <label>
+            <input type="checkbox" id="revolveToggle" checked />
+            Revolve Planets
+          </label>
+        </div>
+        <!-- More settings can be added here -->
+      </div>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
