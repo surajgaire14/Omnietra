@@ -9,26 +9,6 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     />
-    <style>
-      /* Add this CSS for the sliding panel */
-      #planetInfo {
-        position: fixed;
-        left: -400px; /* Hidden off-screen */
-        top: 0;
-        width: 400px;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-        transition: left 0.3s ease;
-        padding: 20px;
-        z-index: 1000; /* Ensure it appears above other elements */
-        color: black;
-      }
-
-      #planetInfo.open {
-        left: 0; /* Slide in */
-      }
-    </style>
   </head>
 
   <body>
@@ -88,21 +68,14 @@
           </label>
         </div>
       </div>
-
-      <!-- Planet Info Slide Window -->
-      <div id="planetInfo">
-        <h2>Planet Info</h2>
-        <div id="infoContent">
-          Click on a planet to see its information here.
-        </div>
-      </div>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.sync/0.1.2/leaflet.sync.min.js"></script>
 
     <!-- Default script loaded -->
-    <script id="dynamicScript" src="script.js"></script>
+    <script id="dynamicScript" src="exoplanet.js"></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Get all anchor tags
@@ -114,7 +87,6 @@
         console.log(currentPath);
 
         navLinks.forEach((link) => console.log(link.getAttribute("href")));
-
         // Loop through each anchor tag and apply 'active' class based on URL match
         navLinks.forEach((link) => {
           if (link.getAttribute("href") === currentPath) {
@@ -123,31 +95,5 @@
         });
       });
     </script>
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const planetInfo = document.getElementById("planetInfo");
-
-        // Function to close the planetInfo panel
-        function closePlanetInfo() {
-          planetInfo.classList.remove("open");
-        }
-
-        // Event listener for clicks outside the planetInfo div
-        document.addEventListener("click", function (event) {
-          // Check if the click is outside the planetInfo div
-          if (!planetInfo.contains(event.target)) {
-            closePlanetInfo();
-          }
-        });
-
-        // Optionally, add a close button inside planetInfo if needed
-        const closeBtn = document.createElement("button");
-        closeBtn.textContent = "Close";
-        closeBtn.style.marginTop = "20px";
-        planetInfo.appendChild(closeBtn);
-
-        closeBtn.addEventListener("click", closePlanetInfo);
-      });
-    </script> -->
   </body>
 </html>
