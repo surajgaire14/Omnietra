@@ -85,16 +85,23 @@ function initializeExoplanetSystem() {
 
             // Add a click event to show planet info
             exoplanetMarkerInstance.on('click', () => {
-                const info =
-                    `<strong>${exoplanet.name}</strong><br>
-                Actual Distance (from Solar System): ${exoplanet.actualDistance} km<br>
-                Scaled Distance: ${exoplanet.scaledDistance}<br>
-                It is like a: ${exoplanet.comparison}
+                const infoContent = `
+                <strong>${exoplanet.name}</strong><br>
+                Actual Distance: ${exoplanet.actualDistance} light-years<br>
+                Scaled Distance: ${exoplanet.scaledDistance} AU<br>
+                Comparison: ${exoplanet.comparison}
             `;
-                L.popup()
-                    .setLatLng(exoplanetCoords)
-                    .setContent(info)
-                    .openOn(map);
+                document.getElementById('infoContent').innerHTML = infoContent;
+
+                // Open the sliding panel
+                document.getElementById('planetInfo').classList.add('open');
+            });
+
+            document.addEventListener('click', (event) => {
+                const planetInfoPanel = document.getElementById('planetInfo');
+                if (!planetInfoPanel.contains(event.target) && !event.target.closest('.planet-icon')) {
+                    planetInfoPanel.classList.remove('open');
+                }
             });
 
             // Draw the path for the planet around the Sun
@@ -404,6 +411,7 @@ function cleanupExoplanetSystem() {
         exoplanetMap.eachLayer(function (layer) {
             exoplanetMap.removeLayer(layer); // Remove all layers from the exoplanet map
         });
+        exoplanetMap.remove(); // Optionally remove the map element itself
         exoplanetMap = null; // Reset exoplanet map variable
     }
     console.log('Exoplanet System Cleaned Up');

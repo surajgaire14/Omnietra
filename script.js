@@ -397,14 +397,15 @@ function initializeSolarSystem() {
 
 }
 function cleanupSolarSystem() {
-    // Check if the map exists and remove layers
-    if (map) {
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer); // Remove all layers from the map
+    if (solarSystemMap) {
+        solarSystemMap.eachLayer(function (layer) {
+            solarSystemMap.removeLayer(layer); // Remove all layers from the map
         });
-        map = null; // Reset map variable
+        solarSystemMap.remove(); // Optionally remove the map element itself
+        solarSystemMap = null; // Reset map variable
     }
     console.log('Solar System Cleaned Up');
 }
 
+// Initialize the solar system
 initializeSolarSystem();
