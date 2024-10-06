@@ -1,3 +1,13 @@
+:root {
+  --btn-primary: #4b0082;
+  --btn-secondary: #495057;
+  --btn-radius: 8px;
+  --btn-font-size: 16px;
+  --btn-font-family: "Courier New", Courier, monospace;
+  --bg-primary: rgba(255, 255, 255, 0.1);
+  --blur: blur(10px);
+}
+
 body {
   color: white;
   font-family: "Courier New", Courier, monospace;
@@ -38,8 +48,8 @@ body {
   right: 20px;
   z-index: 10000;
   transition: transform 0.3s;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background-color: var(--bg-primary);
+  backdrop-filter: var(--blur);
 }
 
 .hamburger:hover {
@@ -51,7 +61,7 @@ body {
   width: 300px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--blur);
   border-radius: 10px 0 0 10px;
   position: absolute;
   top: 0;
@@ -102,10 +112,6 @@ body {
   color: white;
 }
 
-.setting-option {
-  color: white;
-}
-
 .setting-option input {
   margin-right: 10px;
 }
@@ -113,9 +119,9 @@ body {
 /* General Button Styles */
 .btn {
   padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: "Courier New", Courier, monospace;
+  border-radius: var(--btn-radius);
+  font-size: var(--btn-font-size);
+  font-family: var(--btn-font-family);
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
@@ -125,7 +131,7 @@ body {
 
 /* Primary Button (Modern Solid Color) */
 .btn.primary {
-  background-color: #4b0082; /* Deep indigo color */
+  background-color: var(--btn-primary);
   color: white;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
@@ -138,28 +144,28 @@ body {
 
 /* Secondary Button (Lighter Color Variant) */
 .btn.secondary {
-  background-color: #343a40; /* Dark gray */
+  background-color: var(--btn-secondary); /* Dark gray */
   color: white;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn.secondary:hover {
-  background-color: #495057; /* Medium gray on hover */
+  background-color: var(--btn-secondary); /* Medium gray on hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Outline Button (Modern Outline with Transparent Background) */
 .btn.outline {
   background-color: transparent;
-  color: #4b0082; /* Deep indigo text */
-  border: 2px solid #4b0082;
+  color: var(--btn-primary); /* Deep indigo text */
+  border: 2px solid var(--btn-primary);
   box-shadow: none;
 }
 
 .btn.outline:hover {
   background-color: rgba(75, 0, 130, 0.1); /* Light indigo tint on hover */
-  color: #4b0082;
+  color: var(--btn-primary);
 }
 
 /* For Mobile and Small Screens - Responsive Button Size */
@@ -179,4 +185,66 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   pointer-events: none;
   z-index: 500;
+}
+
+/* Toggle switch styles */
+
+.setting-option {
+  position: absolute;
+  top: 0;
+  right: 80px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #000;
+}
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 10px 0;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--btn-primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
