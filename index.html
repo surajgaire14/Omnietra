@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solar System Scale Model</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
 </head>
 
 <body>
@@ -29,8 +30,22 @@
         <button class="measue-btn btn outline" id="measureBtn">
           Measure Distance
         </button>
+        <button class="clear-measure-btn btn outline" id="clearMeasureBtn">
+          Clear Distance
+        </button>
+        <button id="resetBtn" class="btn ">Reset</button>
+
         <div class="distance-output" id="distanceOutput" style="color: black"></div>
       </div>
+    </div>
+
+    <div class="setting-option">
+      <span>Show Solar System</span>
+      <label class="toggle">
+        <input type="checkbox" id="toggleMode" />
+        <span class="slider"></span>
+      </label>
+      <span>Show Exoplanetary System</span>
     </div>
 
     <!-- Hamburger menu outside controls column -->
@@ -45,12 +60,15 @@
           Revolve Planets
         </label>
       </div>
-      <!-- More settings can be added here -->
     </div>
   </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.sync/0.1.2/leaflet.sync.min.js"></script>
+  <script id="dynamicScript" src="exoplanet.js"></script>
+
+
+
 </body>
 
 </html>
