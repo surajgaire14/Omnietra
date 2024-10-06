@@ -9,6 +9,27 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     />
+
+    <style>
+      /* Add this CSS for the sliding panel */
+      #planetInfo {
+        position: fixed;
+        left: -800px; /* Hidden off-screen */
+        top: 0;
+        width: 400px;
+        height: 100%;
+        background: rgba(66, 13, 110, 0.9);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        transition: left 0.3s ease;
+        padding: 20px;
+        z-index: 1000; /* Ensure it appears above other elements */
+        color: white;
+      }
+
+      #planetInfo.open {
+        left: 0; /* Slide in */
+      }
+    </style>
   </head>
 
   <body>
@@ -66,6 +87,14 @@
             <input type="checkbox" id="revolveToggle" />
             Revolve Planets
           </label>
+        </div>
+      </div>
+
+      <!-- Planet Info Slide Window -->
+      <div id="planetInfo">
+        <h2>Planet Info</h2>
+        <div id="infoContent">
+          Click on a planet to see its information here.
         </div>
       </div>
     </div>

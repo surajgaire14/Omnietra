@@ -13,16 +13,16 @@
       /* Add this CSS for the sliding panel */
       #planetInfo {
         position: fixed;
-        left: -400px; /* Hidden off-screen */
+        left: -800px; /* Hidden off-screen */
         top: 0;
         width: 400px;
         height: 100%;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(66, 13, 110, 0.9);
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
         transition: left 0.3s ease;
         padding: 20px;
         z-index: 1000; /* Ensure it appears above other elements */
-        color: black;
+        color: white;
       }
 
       #planetInfo.open {
@@ -103,6 +103,7 @@
 
     <!-- Default script loaded -->
     <script id="dynamicScript" src="script.js"></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Get all anchor tags
