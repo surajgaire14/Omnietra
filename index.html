@@ -65,7 +65,62 @@
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.sync/0.1.2/leaflet.sync.min.js"></script>
-  <script id="dynamicScript" src="exoplanet.js"></script>
+  <script id="dynamicScript" src="script.js"></script> 
+
+  <script>
+    // Function to load a script dynamically
+    function loadScript(src, id) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.id = id;
+      document.body.appendChild(script);
+    }
+
+    // Function to remove a script dynamically by its id
+    function removeScript(id) {
+      const script = document.getElementById(id);
+      if (script) {
+        document.body.removeChild(script);
+      }
+    }
+
+    // Function to handle the system switching
+    function switchSystem(newSystem) {
+      if (newSystem === 'exoplanet') {
+        // Clean up Solar System before switching
+        if (typeof cleanupSolarSystem === 'function') {
+          cleanupSolarSystem();
+        }
+
+        // Remove Solar System script and load Exoplanet system
+        removeScript('solarsystemScript');
+        loadScript('exoplanet.js', 'exoplanetScript');
+      } else {
+        // Clean up Exoplanet system if necessary
+        if (typeof cleanupExoplanetSystem === 'function') {
+          cleanupExoplanetSystem();
+        }
+
+        // Remove Exoplanet script and load Solar System
+        removeScript('exoplanetScript');
+        loadScript('script.js', 'solarsystemScript');
+      }
+    }
+
+    // Toggle between solar system and exoplanetary system
+    document.getElementById('toggleMode').addEventListener('change', function (event) {
+      if (event.target.checked) {
+        switchSystem('exoplanet');
+      } else {
+        switchSystem('solarsystem');
+      }
+    });
+
+    // Initially load solarsystem.js when the page loads
+    window.onload = function () {
+      loadScript('script.js', 'solarsystemScript');
+    };
+  </script>
 
 
 
