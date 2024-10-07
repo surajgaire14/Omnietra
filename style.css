@@ -1,84 +1,274 @@
+:root {
+  --btn-primary: #4b0082;
+  --btn-secondary: #495057;
+  --btn-radius: 8px;
+  --btn-font-size: 16px;
+  --btn-font-family: "Courier New", Courier, monospace;
+  --bg-primary: rgba(255, 255, 255, 0.1);
+  --blur: blur(10px);
+  --anchor-bg: #007bff;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+  font-weight: bold;
+}
+
+a.active {
+  color: white;
+  background-color: var(--anchor-bg);
+  border-radius: 5px;
+}
+
 body {
-    background-color: #4B0082;
-    /* Dark bluish-purple background */
-    color: white;
-    /* Change text color to white for better visibility */
-    font-family: 'Courier New', Courier, monospace;
-    /* Classic typewriter font */
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.project-title {
-    font-size: 36px;
-    /* Increase font size for the project title */
-    text-align: center;
-    /* Center the project title */
-    margin: 20px 0;
-    /* Add margin to space out title from the map */
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
 }
 
-.map-container {
-    position: relative;
-    width: 80%;
-    /* Set width of the map container */
-    height: 80vh;
-    /* Set height of the map container */
-    margin: auto;
-    /* Center the map container */
+.map-column {
+  flex: 1;
+  position: relative;
 }
 
 #map {
-    height: 100%;
-    /* Full height of the map container */
-    width: 100%;
-    /* Full width */
+  height: 100%;
+  width: 100%;
+}
+
+/* Hamburger menu styling */
+.hamburger {
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  transition: transform 0.3s;
+  background-color: var(--bg-primary);
+  backdrop-filter: var(--blur);
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+/* Controls column - initially hidden off-screen */
+.controls-column {
+  width: 300px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: var(--blur);
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  right: -350px;
+  /* Initially off the screen */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+  /* Slide animation */
+  z-index: 9999;
+}
+
+.controls-column.active {
+  right: 0;
+  /* Slide in when active */
 }
 
 .controls {
-    display: flex;
-    /* Use flexbox for control buttons */
-    justify-content: center;
-    /* Center controls horizontally */
-    margin: 10px 0;
-    /* Add margin for spacing */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 50px;
 }
 
-.measure-btn {
-    background-color: white;
-    border: 2px solid #007BFF;
-    border-radius: 5px;
-    padding: 5px 15px;
-    /* Increase padding for better button size */
-    z-index: 1000;
-    cursor: pointer;
-    color: black;
-    /* Set text color for the button */
-    margin: 0 10px;
-    /* Add margin between buttons */
+.controls #measureBtn {
+  color: #000;
 }
 
-.distance-output {
-    background-color: white;
-    border: 1px solid #007BFF;
-    border-radius: 5px;
-    padding: 5px;
-    z-index: 1000;
-    display: none;
-    color: black;
+/* Settings panel - stays hidden until used */
+.settings-panel {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: -350px;
+  width: 300px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px 0 0 10px;
+  transition: right 0.3s ease;
 }
 
-.tools {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    z-index: 1000;
+.settings-panel.active {
+  right: 0;
 }
 
-.tools-button {
-    border: 2px solid #007BFF;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
+.settings-panel h3 {
+  color: white;
+}
+
+.setting-option input {
+  margin-right: 10px;
+}
+
+/* General Button Styles */
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--btn-radius);
+  font-size: var(--btn-font-size);
+  font-family: var(--btn-font-family);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Primary Button (Modern Solid Color) */
+.btn.primary {
+  background-color: var(--btn-primary);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
+}
+
+.btn.primary:hover {
+  background-color: #5d13a6;
+  /* Slightly lighter on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  /* Deepen shadow on hover */
+}
+
+/* Secondary Button (Lighter Color Variant) */
+.btn.secondary {
+  background-color: var(--btn-secondary);
+  /* Dark gray */
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn.secondary:hover {
+  background-color: var(--btn-secondary);
+  /* Medium gray on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Outline Button (Modern Outline with Transparent Background) */
+.btn.outline {
+  background-color: transparent;
+  color: var(--btn-primary);
+  /* Deep indigo text */
+  border: 2px solid var(--btn-primary);
+  box-shadow: none;
+}
+
+.btn.outline:hover {
+  background-color: rgba(75, 0, 130, 0.1);
+  /* Light indigo tint on hover */
+  color: var(--btn-primary);
+}
+
+/* For Mobile and Small Screens - Responsive Button Size */
+@media (max-width: 768px) {
+  .btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+#dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 500;
+}
+
+/* Toggle switch styles */
+
+.setting-option {
+  position: absolute;
+  top: 12px;
+  right: 80px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 8px;
+  color: #000;
+}
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 10px 0;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--btn-primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }

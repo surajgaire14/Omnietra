@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     />
+
     <style>
       /* Add this CSS for the sliding panel */
       #planetInfo {
@@ -102,7 +103,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.sync/0.1.2/leaflet.sync.min.js"></script>
 
     <!-- Default script loaded -->
-    <script id="dynamicScript" src="script.js"></script>
+    <script id="dynamicScript" src="exoplanet.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -115,7 +116,6 @@
         console.log(currentPath);
 
         navLinks.forEach((link) => console.log(link.getAttribute("href")));
-
         // Loop through each anchor tag and apply 'active' class based on URL match
         navLinks.forEach((link) => {
           if (link.getAttribute("href") === currentPath) {
@@ -124,31 +124,5 @@
         });
       });
     </script>
-    <!-- <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const planetInfo = document.getElementById("planetInfo");
-
-        // Function to close the planetInfo panel
-        function closePlanetInfo() {
-          planetInfo.classList.remove("open");
-        }
-
-        // Event listener for clicks outside the planetInfo div
-        document.addEventListener("click", function (event) {
-          // Check if the click is outside the planetInfo div
-          if (!planetInfo.contains(event.target)) {
-            closePlanetInfo();
-          }
-        });
-
-        // Optionally, add a close button inside planetInfo if needed
-        const closeBtn = document.createElement("button");
-        closeBtn.textContent = "Close";
-        closeBtn.style.marginTop = "20px";
-        planetInfo.appendChild(closeBtn);
-
-        closeBtn.addEventListener("click", closePlanetInfo);
-      });
-    </script> -->
   </body>
 </html>
